@@ -117,6 +117,16 @@ class Planet(Entity):
         """
         return self._docked_ships.get(ship_id)
 
+    def get_owner_id(self):
+        """
+        Return the owner id of the planet
+
+        :return: int
+        """
+        if self.owner:
+            return self.owner.id
+        return None
+
     def all_docked_ships(self):
         """
         The list of all ships docked into the planet
@@ -269,7 +279,7 @@ class Ship(Entity):
         """
         return "u {}".format(self.id)
 
-    def navigate(self, target, game_map, speed, avoid_obstacles=True, max_corrections=90, angular_step=1,
+    def navigate(self, target, game_map, speed, avoid_obstacles=True, max_corrections=45, angular_step=5,
                  ignore_ships=False, ignore_planets=False):
         """
         Move a ship to a specific target position (Entity). It is recommended to place the position

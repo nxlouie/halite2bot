@@ -28,6 +28,16 @@ class Entity:
         self.owner = player
         self.id = entity_id
 
+    def get_owner_id(self):
+        """
+        Return the owner id of the planet
+
+        :return: int
+        """
+        if self.owner:
+            return self.owner.id
+        return None
+
     def calculate_distance_between(self, target):
         """
         Calculates the distance between this object and the target.
@@ -116,16 +126,6 @@ class Planet(Entity):
         :rtype: Ship
         """
         return self._docked_ships.get(ship_id)
-
-    def get_owner_id(self):
-        """
-        Return the owner id of the planet
-
-        :return: int
-        """
-        if self.owner:
-            return self.owner.id
-        return None
 
     def all_docked_ships(self):
         """
